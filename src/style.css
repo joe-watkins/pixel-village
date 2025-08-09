@@ -1,13 +1,137 @@
 body {
     margin: 0;
-    padding: 0;
+    padding: 15px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #2d2d2d;
+    font-family: 'Courier New', monospace;
+    gap: 15px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+#game-container {
+    flex: 0 0 auto;
 }
 
 canvas {
     display: block;
+    border: 2px solid #8B4513;
+}
+
+#character-panel {
+    width: 340px;
+    background: #F5ECD7;
+    border: 3px solid #8B4513;
+    border-radius: 8px;
+    padding: 18px;
+    font-size: 13px;
+    color: #4A4A4A;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    height: fit-content;
+    max-height: 620px;
+    overflow-y: auto;
+}
+
+#character-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 12px;
+}
+
+#character-avatar img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #8B4513;
+    border-radius: 4px;
+}
+
+#character-details h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2D2D2D;
+}
+
+#character-details p {
+    margin: 2px 0;
+    color: #666;
+    font-size: 12px;
+}
+
+#personality-section, #quirks-section {
+    margin-bottom: 16px;
+}
+
+#personality-section h3, #quirks-section h3 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2D2D2D;
+}
+
+.trait {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 8px;
+}
+
+.trait span {
+    flex: 0 0 120px;
+    font-size: 11px;
+}
+
+.trait-bar {
+    flex: 1;
+    height: 12px;
+    background: #DDD;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #AAA;
+}
+
+.trait-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transition: width 0.3s ease;
+}
+
+#quirks-section p {
+    margin: 4px 0;
+    font-size: 11px;
+    color: #555;
+}
+
+#speed-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #CCC;
+}
+
+#speed-controls span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+#speed-controls button {
+    width: 32px;
+    height: 24px;
+    background: #E8E8E8;
+    border: 1px solid #999;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#speed-controls button:hover {
+    background: #D0D0D0;
+}
+
+#speed-controls button:active {
+    background: #B0B0B0;
 }

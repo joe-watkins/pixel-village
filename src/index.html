@@ -4,8 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PixelTown AI</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="vendor/phaser.min.js"></script>
+    <script src="vendor/easystarjs.js"></script>
 </head>
 <body>
-    <script src="main.js"></script>
+    <div id="game-container"></div>
+    <div id="character-panel">
+        <div id="character-info">
+            <div id="character-avatar">
+                <img src="assets/ai-1.png" alt="Character Avatar" />
+            </div>
+            <div id="character-details">
+                <h2>Hiro Tanaka</h2>
+                <p>♀ 27</p>
+                <p>🍞 Baker</p>
+            </div>
+        </div>
+        <div id="personality-section">
+            <h3>Personality</h3>
+            <div class="trait">
+                <span>Openness</span>
+                <div class="trait-bar"><div class="trait-fill" style="width: 75%"></div></div>
+            </div>
+            <div class="trait">
+                <span>Conscientiousness</span>
+                <div class="trait-bar"><div class="trait-fill" style="width: 90%"></div></div>
+            </div>
+            <div class="trait">
+                <span>Extraversion</span>
+                <div class="trait-bar"><div class="trait-fill" style="width: 85%"></div></div>
+            </div>
+            <div class="trait">
+                <span>Agreeableness</span>
+                <div class="trait-bar"><div class="trait-fill" style="width: 80%"></div></div>
+            </div>
+            <div class="trait">
+                <span>Neuroticism</span>
+                <div class="trait-bar"><div class="trait-fill" style="width: 70%"></div></div>
+            </div>
+        </div>
+        <div id="quirks-section">
+            <h3>Quirks</h3>
+            <p>Always carries a baguette</p>
+            <p>Gives bread to stray cats</p>
+            <p>Obsessed with weather forecast</p>
+        </div>
+        <div id="speed-controls">
+            <span>Speed</span>
+            <button>||</button>
+            <button>1x</button>
+            <button>2x</button>
+            <button>5x</button>
+            <button>∞</button>
+        </div>
+    </div>
+    
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: 760,
+            height: 600,
+            backgroundColor: '#8BC34A',
+            parent: 'game-container',
+            scene: {
+                preload: function() {
+                    this.load.image('cafe', 'assets/cafe.png');
+                    this.load.image('house', 'assets/house.png');
+                    this.load.image('library', 'assets/library.png');
+                    this.load.image('tree', 'assets/tree.png');
+                    this.load.image('heart', 'assets/heart.png');
+                    this.load.image('ai-1', 'assets/ai-1.png');
+                    this.load.image('ai-2', 'assets/ai-2.png');
+                    this.load.image('ai-3', 'assets/ai-3.png');
+                    this.load.image('ai-4', 'assets/ai-4.png');
+                    this.load.image('ai-5', 'assets/ai-5.png');
+                    this.load.image('ai-6', 'assets/ai-6.png');
+                    this.load.image('shop', 'assets/shop.png');
+                    this.load.image('park', 'assets/park.png');
+                    this.load.image('home', 'assets/home.png');
+                },
+                create: function() {
+                    // Create a green grassy background
+                    this.add.rectangle(380, 300, 760, 600, 0x8BC34A);
+                    
+                    // Add winding paths (more organic like in the original)
+                    this.add.rectangle(150, 200, 300, 30, 0xD2B48C);
+                    this.add.rectangle(450, 350, 300, 30, 0xD2B48C);
+                    this.add.rectangle(200, 450, 400, 30, 0xD2B48C);
+                    this.add.rectangle(250, 300, 30, 150, 0xD2B48C);
+                    this.add.rectangle(500, 250, 30, 200, 0xD2B48C);
+                    
+                    // Buildings - positioned to match original design more closely
+                    this.add.image(100, 100, 'cafe').setScale(0.6);
+                    this.add.image(300, 100, 'shop').setScale(0.6);
+                    this.add.image(500, 100, 'library').setScale(0.6);
+                    this.add.image(100, 300, 'home').setScale(0.6);
+                    this.add.image(300, 300, 'park').setScale(0.6);
+                    this.add.image(500, 300, 'home').setScale(0.6);
+                    this.add.image(350, 80, 'house').setScale(0.6);
+                    this.add.image(580, 120, 'house').setScale(0.6);
+                    this.add.image(580, 480, 'library').setScale(0.6);
+                    this.add.image(100, 520, 'house').setScale(0.6);
+                    
+                    // Additional buildings to fill the space better
+
+                    
+                    // Trees scattered more naturally
+                    this.add.image(180, 260, 'tree').setScale(0.4);
+                    this.add.image(480, 140, 'tree').setScale(0.4);
+                    this.add.image(40, 280, 'tree').setScale(0.4);
+                    this.add.image(720, 150, 'tree').setScale(0.4);
+                    this.add.image(150, 580, 'tree').setScale(0.4);
+                    this.add.image(450, 580, 'tree').setScale(0.4);
+                    this.add.image(680, 400, 'tree').setScale(0.4);
+                    this.add.image(30, 450, 'tree').setScale(0.4);
+
+                    // Wooden bench in center area
+                    this.add.rectangle(320, 280, 50, 15, 0x8B4513);
+                    this.add.rectangle(320, 285, 50, 8, 0xA0522D);
+                    
+                    // Heart icon near center
+                    this.add.image(380, 330, 'heart').setScale(0.4);
+
+                    // AI Characters - much smaller to match the original design
+                    this.add.image(140, 280, 'ai-1').setScale(0.35);
+                    this.add.image(200, 250, 'ai-2').setScale(0.35);
+                    this.add.image(300, 200, 'ai-3').setScale(0.35);
+                    this.add.image(420, 180, 'ai-4').setScale(0.35);
+                    this.add.image(550, 280, 'ai-5').setScale(0.35);
+                    this.add.image(180, 420, 'ai-6').setScale(0.35);
+                    this.add.image(320, 460, 'ai-1').setScale(0.35);
+                    this.add.image(480, 420, 'ai-2').setScale(0.35);
+                    this.add.image(80, 320, 'ai-3').setScale(0.35);
+                    this.add.image(620, 320, 'ai-4').setScale(0.35);
+                    this.add.image(250, 380, 'ai-5').setScale(0.35);
+
+                    // Adding environmental animations (trees swaying)
+                    this.anims.create({
+    key: 'treeSway',
+    frames: this.anims.generateFrameNumbers('tree', { start: 0, end: 3 }),
+    frameRate: 6,
+    repeat: -1
+});
+this.add.sprite(200, 200, 'tree').play('treeSway');
+this.add.sprite(400, 400, 'tree').play('treeSway');
+
+// Implementing A* pathfinding for agent movement
+const grid = new EasyStar.js();
+grid.setGrid([ // Example grid
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0]
+]);
+grid.setAcceptableTiles([0]);
+grid.findPath(0, 0, 4, 4, function(path) {
+    if (path === null) {
+        console.log("Path not found.");
+    } else {
+        console.log("Path found:", path);
+    }
+});
+grid.calculate();
+                }
+            }
+        };
+        const game = new Phaser.Game(config);
+    </script>
 </body>
 </html>

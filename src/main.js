@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+// Placeholder file no longer used for Phaser boot. Logic moved to index.html renderer script.
 
 const config = {
     type: Phaser.AUTO,
