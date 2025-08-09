@@ -1,0 +1,13 @@
+{
+    "name": "pixel-town-ai",
+    "version": "1.0.0",
+    "description": "PixelTown AI local app",
+    "main": "src/main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "dependencies": {
+        "phaser": "^3.55.2",
+        "electron": "^25.3.0"
+    }
+}
