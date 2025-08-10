@@ -24,3 +24,20 @@ function create() {
 function update() {
     // Update the game scene here
 }
+
+function updateAmbientLighting(timeOfDay) {
+    const body = document.body;
+    if (timeOfDay === 'day') {
+        body.style.backgroundColor = '#87CEEB'; // Light blue for day
+    } else if (timeOfDay === 'night') {
+        body.style.backgroundColor = '#2C3E50'; // Dark blue for night
+    }
+}
+
+function simulateDayNightCycle() {
+    const currentHour = new Date().getHours();
+    const timeOfDay = currentHour >= 6 && currentHour < 18 ? 'day' : 'night';
+    updateAmbientLighting(timeOfDay);
+}
+
+setInterval(simulateDayNightCycle, 60000); // Update every minute
