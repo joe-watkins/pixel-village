@@ -61,7 +61,10 @@
     </div>
     
     <script>
-        const config = {
+        // Import clock module at the top level
+import { currentHour } from './clock.js';
+
+const config = {
             type: Phaser.AUTO,
             width: 760,
             height: 600,
@@ -208,6 +211,50 @@ relationshipsGraph.innerHTML = `
     </svg>
 `;
 document.body.appendChild(relationshipsGraph);
+
+// Ensure AI plans change based on time
+function updateAIPlans() {
+    if (currentHour >= 6 && currentHour < 12) {
+        console.log("AI plans: Morning routine");
+    } else if (currentHour >= 12 && currentHour < 18) {
+        console.log("AI plans: Afternoon activities");
+    } else {
+        console.log("AI plans: Evening relaxation");
+    }
+}
+
+setInterval(updateAIPlans, 1000); // Check plans every second for simulation purposes
+
+// Implementing basic events
+function scheduleEvents() {
+    const events = [
+        { time: 10, description: "Neighborhood party" },
+        { time: 15, description: "Birthday celebration" }
+    ];
+
+    events.forEach(event => {
+        if (currentHour === event.time) {
+            console.log(`Event happening: ${event.description}`);
+        }
+    });
+}
+
+setInterval(scheduleEvents, 1000); // Check events every second for simulation purposes
+
+// Adding weather effects
+let currentWeather = "sunny";
+
+function updateWeather() {
+    const weatherOptions = ["sunny", "rainy", "cloudy"];
+    currentWeather = weatherOptions[Math.floor(Math.random() * weatherOptions.length)];
+    console.log(`Current Weather: ${currentWeather}`);
+
+    if (currentWeather === "rainy") {
+        console.log("Agents are staying indoors due to rain.");
+    }
+}
+
+setInterval(updateWeather, 5000); // Update weather every 5 seconds for simulation purposes
                 }
             }
         };
